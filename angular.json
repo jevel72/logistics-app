@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "projects": {
+    "logistics-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/logistics-app",
+      "sourceRoot": "apps/logistics-app/src",
+      "prefix": "logistics-org",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/logistics-app",
+            "index": "apps/logistics-app/src/index.html",
+            "main": "apps/logistics-app/src/main.ts",
+            "polyfills": "apps/logistics-app/src/polyfills.ts",
+            "tsConfig": "apps/logistics-app/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/logistics-app/src/favicon.ico",
+              "apps/logistics-app/src/assets"
+            ],
+            "styles": ["apps/logistics-app/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/logistics-app/src/environments/environment.ts",
+                  "with": "apps/logistics-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "logistics-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "logistics-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "logistics-app:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/logistics-app/tsconfig.app.json",
+              "apps/logistics-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/logistics-app/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/logistics-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "logistics-app-e2e": {
+      "root": "apps/logistics-app-e2e",
+      "sourceRoot": "apps/logistics-app-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/logistics-app-e2e/cypress.json",
+            "tsConfig": "apps/logistics-app-e2e/tsconfig.e2e.json",
+            "devServerTarget": "logistics-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "logistics-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/logistics-app-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/logistics-app-e2e/**/*"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "analytics": false
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "tslint"
+      },
+      "library": {
+        "linter": "tslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "logistics-app"
+}
