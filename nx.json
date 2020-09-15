@@ -28,6 +28,9 @@
     "logistics-app-e2e": {
       "tags": [],
       "implicitDependencies": ["logistics-app"]
+    },
+    "logistics-server": {
+      "tags": []
     }
   }
 }

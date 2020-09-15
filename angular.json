@@ -62,7 +62,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "logistics-app:build"
+            "browserTarget": "logistics-app:build",
+            "proxyConfig": "apps/logistics-app/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -118,6 +119,60 @@
           "options": {
             "tsConfig": ["apps/logistics-app-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/logistics-app-e2e/**/*"]
+          }
+        }
+      }
+    },
+    "logistics-server": {
+      "root": "apps/logistics-server",
+      "sourceRoot": "apps/logistics-server/src",
+      "projectType": "application",
+      "prefix": "logistics-server",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/logistics-server",
+            "main": "apps/logistics-server/src/main.ts",
+            "tsConfig": "apps/logistics-server/tsconfig.app.json",
+            "assets": ["apps/logistics-server/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/logistics-server/src/environments/environment.ts",
+                  "with": "apps/logistics-server/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "logistics-server:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/logistics-server/tsconfig.app.json",
+              "apps/logistics-server/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/logistics-server/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/logistics-server/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
