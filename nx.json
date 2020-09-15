@@ -31,6 +31,9 @@
     },
     "logistics-server": {
       "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }
