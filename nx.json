@@ -17,7 +17,13 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
       }
     }
   },
@@ -27,13 +33,21 @@
     },
     "logistics-app-e2e": {
       "tags": [],
-      "implicitDependencies": ["logistics-app"]
+      "implicitDependencies": [
+        "logistics-app"
+      ]
     },
     "logistics-server": {
       "tags": []
     },
     "shared": {
       "tags": []
+    },
+    "shared-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "shared"
+      ]
     }
   }
 }

@@ -12,12 +12,4 @@ describe('AppService', () => {
 
     service = app.get<AppService>(AppService);
   });
-
-  describe('getData', () => {
-    it('should return "Welcome to logistics-server!"', () => {
-      expect(service.getData()).toEqual({
-        message: 'Welcome to logistics-server!',
-      });
-    });
-  });
 });
