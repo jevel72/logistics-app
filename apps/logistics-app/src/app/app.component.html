@@ -2,4 +2,6 @@
   <a mat-raised-button routerLink="/">Главная</a>
   <a mat-raised-button routerLink="/list">Заявки</a>
 </header>
-<router-outlet></router-outlet>
+<div [@routeTransitions]="handleRoute(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>
