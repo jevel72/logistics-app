@@ -8,6 +8,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 // services
 import { GetDataService } from '../services/get-data.service';
+import { CacheService } from '../services/cache.service';
 
 // interfaces
 import { Claim } from './claim.interface';
@@ -19,7 +20,7 @@ import { Claim } from './claim.interface';
   styleUrls: ['./logistics-list.component.scss'],
 })
 export class LogisticsListComponent implements OnInit {
-  constructor(private getDataService: GetDataService) {}
+  constructor(private getData: GetDataService, private cache: CacheService) {}
   public claims: Claim[] = [];
   public displayedColumns: string[] = [
     'id',
@@ -30,10 +31,20 @@ export class LogisticsListComponent implements OnInit {
     'comment',
     'ati',
   ];
+  public initalizeData(): void {
+    if (this.cache.getData('claims')) {
+      this.claims = this.cache.getData('claims');
+    } else {
+      this.getData
+        .fetchFrom('/api/claims')
+        .pipe(distinctUntilChanged(), untilDestroyed(this))
+        .subscribe((data) => {
+          this.claims = data;
+          this.cache.storeData('claims', data);
+        });
+    }
+  }
   ngOnInit(): void {
-    this.getDataService
-      .fetchFrom('/api/claims')
-      .pipe(distinctUntilChanged(), untilDestroyed(this))
-      .subscribe((data) => (this.claims = data));
+    this.initalizeData();
   }
 }
