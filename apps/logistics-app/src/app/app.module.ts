@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 // material
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 // modules
 import { AppRoutingModule } from './app-routing.module';
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatTableModule,
     HttpClientModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
