@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 // rxjs
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -20,7 +21,11 @@ import { Claim } from './claim.interface';
   styleUrls: ['./logistics-list.component.scss'],
 })
 export class LogisticsListComponent implements OnInit {
-  constructor(private getData: GetDataService, private cache: CacheService) {}
+  constructor(
+    private router: Router,
+    private getData: GetDataService,
+    private cache: CacheService
+  ) {}
   public claims: Claim[] = [];
   public displayedColumns: string[] = [
     'id',
@@ -44,6 +49,15 @@ export class LogisticsListComponent implements OnInit {
         });
     }
   }
+  public addNewClaim(): void {
+    this.router.navigate(['edit'], { state: { caption: 'Новая заявка' } });
+  }
+  public editClaim(payload: Claim): void {
+    this.router.navigate(['edit'], {
+      state: { caption: 'Редактирование заявки', payload },
+    });
+  }
+  public deleteClaim(id: number): void {}
   ngOnInit(): void {
     this.initalizeData();
   }

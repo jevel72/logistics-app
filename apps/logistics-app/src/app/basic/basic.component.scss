@@ -2,20 +2,21 @@
   margin: 1.5rem;
   padding: 2rem;
   border-radius: 15px;
+  text-shadow: 0 1px 0 rgb(255, 255, 255);
   color: white;
-  font-weight: bold;
+  font-weight: lighter;
   font-size: 1.7rem;
   box-shadow: 0 0 10px 0 rgb(56, 56, 56);
 }
 
 #main-title {
   @include shared;
-  background: linear-gradient(red, orange);
+  background: linear-gradient(rgb(141, 141, 141), rgb(68, 68, 68));
   max-width: 15rem;
 }
 
 #github-link {
   @include shared;
-  background: linear-gradient(yellow, green);
+  background: linear-gradient(rgb(58, 58, 58), rgb(105, 105, 105));
   max-width: 25rem;
 }

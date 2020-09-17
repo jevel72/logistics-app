@@ -5,4 +5,10 @@ a[mat-raised-button] {
   color: white;
   text-shadow: 0 1px 2px white;
   background-color: rgb(41, 161, 155);
+  transition: all 0.7s;
+  filter: brightness(50%);
+  &:hover {
+    transform: scale(1.03);
+    filter: brightness(100%);
+  }
 }

@@ -1,21 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// material
-import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-// modules
 import { AppRoutingModule } from './app-routing.module';
 
-// components
 import { AppComponent } from './app.component';
 import { LogisticsListComponent } from './logistics-list/logistics-list.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BasicComponent } from './basic/basic.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ClaimEditorComponent } from './claim-editor/claim-editor.component';
 
 @NgModule({
   declarations: [
@@ -23,15 +22,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LogisticsListComponent,
     NotFoundComponent,
     BasicComponent,
+    ClaimEditorComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    // material
     MatButtonModule,
     MatTableModule,
     HttpClientModule,
     MatIconModule,
+    // my modules
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
