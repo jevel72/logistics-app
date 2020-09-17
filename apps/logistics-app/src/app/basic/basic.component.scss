@@ -1,0 +1,21 @@
+@mixin shared {
+  margin: 1.5rem;
+  padding: 2rem;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.7rem;
+  box-shadow: 0 0 10px 0 rgb(56, 56, 56);
+}
+
+#main-title {
+  @include shared;
+  background: linear-gradient(red, orange);
+  max-width: 15rem;
+}
+
+#github-link {
+  @include shared;
+  background: linear-gradient(yellow, green);
+  max-width: 25rem;
+}
