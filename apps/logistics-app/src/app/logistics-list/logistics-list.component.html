@@ -6,7 +6,9 @@
   </ng-container>
   <ng-container matColumnDef="datetime">
     <th mat-header-cell *matHeaderCellDef>Дата и время</th>
-    <td mat-cell *matCellDef="let elem">{{ elem.datetime | date }}</td>
+    <td mat-cell *matCellDef="let elem">
+      {{ elem.datetime | date: 'medium' }}
+    </td>
   </ng-container>
   <ng-container matColumnDef="firm">
     <th mat-header-cell *matHeaderCellDef>Название фирмы</th>
